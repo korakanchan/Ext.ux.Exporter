@@ -4,6 +4,8 @@
     		"name": "Ext.ux.Exporter",
             "id": "ext-ux-exporter",
             "files": [
+            	{"path": "", "name": "Formatter.js"},
+            	{"path": "", "name": "Base64.js"},
 				{"path": "", "name": "Exporter.js"},
 				{"path": "", "name": "Button.js"},
 				{"path": "csvFormatter/", "name": "CsvFormatter.js"},
