@@ -8,6 +8,7 @@ Ext.define("Ext.ux.exporter.Exporter", {
         "Ext.ux.exporter.Base64",
         "Ext.ux.exporter.Button",
         "Ext.ux.exporter.csvFormatter.CsvFormatter",
+        "Ext.ux.exporter.wikiFormatter.WikiFormatter",
         "Ext.ux.exporter.excelFormatter.ExcelFormatter"
     ],
 

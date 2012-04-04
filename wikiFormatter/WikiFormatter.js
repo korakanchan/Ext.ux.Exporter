@@ -1,25 +1,25 @@
 /**
- * @class Ext.ux.Exporter.CSVFormatter
+ * @class Ext.ux.Exporter.WikiFormatter
  * @extends Ext.ux.Exporter.Formatter
- * Specialised Format class for outputting .csv files
+ * Specialised Format class for outputting mediawiki tables
  */
-Ext.define("Ext.ux.exporter.csvFormatter.CsvFormatter", {
+Ext.define("Ext.ux.exporter.wikiFormatter.WikiFormatter", {
     extend: "Ext.ux.exporter.Formatter",
     
     /**
-     * @cfg {String} contentType The content type to use. Defaults to 'data:text/csv;base64,'
+     * @cfg {String} contentType The content type to use. Defaults to 'data:text/plain;base64,'
      */
-    contentType: 'data:text/csv;base64,',
+    contentType: 'data:text/plain;base64,',
     
     /**
-     * @cfg {String} separator The separator to use. Defaults to ';'
+     * @cfg {String} cls The table class. Defaults to "wikitable"
      */
-    separator: ";",
+    cls: "wikitable",
 
     /**
-     * @cfg {String} extension The extension to use. Defaults to 'csv'
+     * @cfg {String} extension The extension to use. Defaults to 'txt'
      */
-    extension: "csv",
+    extension: "txt",
     
     /**
      * @cfg {String} lineSeparator The line separator to use. Defaults to "\n"
@@ -32,13 +32,14 @@ Ext.define("Ext.ux.exporter.csvFormatter.CsvFormatter", {
     capitalizeHeaders: false,
 
     /**
-     * Formats the store to the CSV format. 
+     * Formats the store to the wiki table format. 
      * @param store The store to export
      * @param config {Object} [config] Config object. Contains the "columns" property, which is an array of field names.
      */
     format: function(store, config) {
         this.columns = config.columns || (store.fields ? store.fields.items : store.model.prototype.fields.items);
-        return this.getHeaders() + this.lineSeparator + this.getRows(store);
+        return "{|" + this.getHeaders() + this.lineSeparator +
+        		this.getRows(store) + this.lineSeparator + "|}";
     },
     
     /**
@@ -64,10 +65,13 @@ Ext.define("Ext.ux.exporter.csvFormatter.CsvFormatter", {
         	  title = Ext.String.capitalize(title);        	  
           }
 
-          columns.push(title);
+          columns.push("! " + title);
         }, this);
 
-        return columns.join(this.separator);
+        var retVal = ' class="'+ this.cls + '" valign="top"' + this.lineSeparator;
+        retVal += columns.join(this.lineSeparator);
+        
+        return retVal;
     },
     /**
      * Returns all rows for the store
@@ -78,7 +82,7 @@ Ext.define("Ext.ux.exporter.csvFormatter.CsvFormatter", {
     getRows: function(store) {
         var rows = [];
         store.each(function(record) {
-          rows.push(this.getCells(record));
+          rows.push("|-" + this.lineSeparator + this.getCells(record));
         }, this);
 
         return rows.join(this.lineSeparator);
@@ -102,11 +106,10 @@ Ext.define("Ext.ux.exporter.csvFormatter.CsvFormatter", {
                   value = record.get(name);
                 }
                 
-                value = '"' + value + '"';
-                cells.push(value);
+                cells.push("| " + value);
             }
         });
 
-        return cells.join(this.separator);
+        return cells.join(this.lineSeparator);
     }
 });

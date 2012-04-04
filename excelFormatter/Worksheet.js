@@ -142,7 +142,7 @@ Ext.define("Ext.ux.exporter.excelFormatter.Worksheet", {
     Ext.each(this.columns, function(col) {
       var name  = col.name || col.dataIndex;
 
-      if(name) {
+      if(typeof name !== 'undefined') {
           //if given a renderer via a ColumnModel, use it and ensure data type is set to String
           if (Ext.isFunction(col.renderer)) {
             var value = col.renderer(record.get(name), null, record),

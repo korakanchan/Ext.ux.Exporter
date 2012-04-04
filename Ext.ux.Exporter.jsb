@@ -9,6 +9,7 @@
 				{"path": "", "name": "Exporter.js"},
 				{"path": "", "name": "Button.js"},
 				{"path": "csvFormatter/", "name": "CsvFormatter.js"},
+				{"path": "wikiFormatter/", "name": "WikiFormatter.js"},
 				{"path": "excelFormatter/", "name": "Cell.js"},
 				{"path": "excelFormatter/", "name": "Style.js"},
 				{"path": "excelFormatter/", "name": "ExcelFormatter.js"},
