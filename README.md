@@ -1,9 +1,26 @@
-h1. Ext.ux.Exporter
+# Ext.ux.Exporter
 
-h2. About
+## About
 
-p. Exporter is a generic export class which takes any Ext.data.Store-based component (e.g. grids and similar) and exports the data in any format.
+Exporter is a generic export class which takes any Ext.data.Store-based component (e.g. grids and similar) and exports the data in any format.
 
-p. Exporter works completely client-side.  It uses a Formatter class to generate a document (.xls, .csv etc) and then uses the donwloadify library so that the user can view or download it.
+Exporter works completely client-side.  It uses a Formatter class to generate a document (.xls, .csv etc) and then uses the donwloadify library so that the user can view or download it.
 
-p. Right now, there isn't a readme or example. You can check this post for more info for now: http://www.sencha.com/forum/showthread.php?136598-Export-store-to-Excel
+Right now, there isn't a readme or example. You can check this post for more info for now: http://www.sencha.com/forum/showthread.php?136598-Export-store-to-Excel
+
+# More details provided by Mason Zhang
+## How to use it
+- include script files in html file:
+```text
+  <script type="text/javascript" src="/extjs/src/ux/exporter/swfobject.js"></script>
+  <script type="text/javascript" src="/extjs/src/ux/exporter/downloadify.min.js"></script>
+```
+- in your items list, add an item as follows:
+```text
+  {
+    xtype: 'exporterbutton'
+  }
+```
+## Notes
+- currently I just make csv works
+- the output excel file still does not work, excel has some errors when parse the xml format.
