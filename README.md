@@ -11,16 +11,18 @@ Right now, there isn't a readme or example. You can check this post for more inf
 # More details provided by Mason Zhang
 ## How to use it
 - include script files in html file:
-```text
-  <script type="text/javascript" src="/extjs/src/ux/exporter/swfobject.js"></script>
-  <script type="text/javascript" src="/extjs/src/ux/exporter/downloadify.min.js"></script>
+```
+    <script type="text/javascript" src="/extjs/src/ux/exporter/swfobject.js"></script>
+
+    <script type="text/javascript" src="/extjs/src/ux/exporter/downloadify.min.js"></script>
 ```
 - in your items list, add an item as follows:
-```text
-  {
-    xtype: 'exporterbutton'
-  }
 ```
+    {
+        xtype: 'exporterbutton'
+    }
+```
+
 ## Notes
 - currently I just make csv works
 - the output excel file still does not work, excel has some errors when parse the xml format.
