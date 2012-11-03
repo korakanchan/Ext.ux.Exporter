@@ -14,7 +14,7 @@ Ext.define("Ext.ux.exporter.csvFormatter.CsvFormatter", {
     /**
      * @cfg {String} separator The separator to use. Defaults to ';'
      */
-    separator: ";",
+    separator: ",",
 
     /**
      * @cfg {String} extension The extension to use. Defaults to 'csv'
@@ -77,8 +77,8 @@ Ext.define("Ext.ux.exporter.csvFormatter.CsvFormatter", {
      */
     getRows: function(store) {
         var rows = [];
-        store.each(function(record) {
-          rows.push(this.getCells(record));
+        store.each(function(record, index) {
+          rows.push(this.getCells(record, index));
         }, this);
 
         return rows.join(this.lineSeparator);
@@ -88,16 +88,16 @@ Ext.define("Ext.ux.exporter.csvFormatter.CsvFormatter", {
      * @param {Object} record The record
      * @returns {String} The cells of the record
      */
-    getCells: function(record) {
+    getCells: function(record, index) {
         var cells = [];
-        
-        Ext.each(this.columns, function(col) {
+
+        Ext.each(this.columns, function(col, iCol) {
             var name = col.name || col.dataIndex;
             var value = "";
             
             if(typeof name !== 'undefined') {
                 if (Ext.isFunction(col.renderer)) {
-                  value = col.renderer(record.get(name), null, record);
+                  value = col.renderer(record.get(name), {}, record, index, iCol, record.store);
                 } else {
                   value = record.get(name);
                 }

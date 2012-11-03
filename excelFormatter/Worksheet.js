@@ -139,13 +139,14 @@ Ext.define("Ext.ux.exporter.excelFormatter.Worksheet", {
         cells = [];
     if (this.stripeRows === true) style = index % 2 == 0 ? 'even' : 'odd';
 
+    var iCol = 0;
     Ext.each(this.columns, function(col) {
       var name  = col.name || col.dataIndex;
 
       if(typeof name !== 'undefined') {
           //if given a renderer via a ColumnModel, use it and ensure data type is set to String
           if (Ext.isFunction(col.renderer)) {
-            var value = col.renderer(record.get(name), null, record),
+            var value = col.renderer(record.get(name), {}, record, index, iCol++, this.store),
                 type = "String";
           } else {
             var value = record.get(name),

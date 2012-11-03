@@ -75,7 +75,7 @@ Ext.define("Ext.ux.exporter.Exporter", {
         },
 
         getFormatterByName: function(formatter) {
-            formatter = formatter ? formatter : "excel";
+            formatter = formatter ? formatter : "csv";
             formatter = !Ext.isString(formatter) ? formatter : Ext.create("Ext.ux.exporter." + formatter + "Formatter." + Ext.String.capitalize(formatter) + "Formatter");
             return formatter;
         }
